@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Translation App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Healthcare Translation App</h1>
+        
+        <!-- Speech Input Section -->
+        <div>
+            <button id="start-speaking">
+                <i class="fas fa-microphone"></i> Start Speaking
+            </button>
+            <button id="stop-speaking" style="display: none;">
+                <i class="fas fa-stop"></i> Stop Speaking
+            </button>
+            <div id="speech-progress" class="progress" style="display: none;">
+                <div class="spinner"></div>
+                <span>Processing speech...</span>
+            </div>
+            <p id="transcript"></p>
+        </div>
+
+        <!-- Translation Section -->
+        <div>
+            <label for="language">Translate to:</label>
+            <select id="language">
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+            </select>
+            <button onclick="translate()">
+                <i class="fas fa-language"></i> Translate
+            </button>
+            <div id="translation-progress" class="progress" style="display: none;">
+                <div class="spinner"></div>
+                <span>Translating...</span>
+            </div>
+        </div>
+
+        <!-- Transcript Display -->
+        <div>
+            <h2>Original Transcript</h2>
+            <p id="original"></p>
+        </div>
+        <div>
+            <h2>Translated Transcript</h2>
+            <p id="translated"></p>
+            <button onclick="speak()">
+                <i class="fas fa-volume-up"></i> Speak
+            </button>
+            <div id="audio-progress" class="progress" style="display: none;">
+                <div class="spinner"></div>
+                <span>Generating audio...</span>
+            </div>
+        </div>
+
+        <!-- Audio Playback -->
+        <audio id="audioPlayer" controls></audio>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
