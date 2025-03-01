@@ -35,7 +35,7 @@
                 <option value="fr">French</option>
                 <option value="de">German</option>
             </select>
-            <button onclick="translate()">
+            <button id="translateBtn">
                 <i class="fas fa-language"></i> Translate
             </button>
             <div id="translation-progress" class="progress" style="display: none;">
@@ -47,12 +47,12 @@
         <!-- Transcript Display -->
         <div>
             <h2>Original Transcript</h2>
-            <p id="original"></p>
+            <p id="original">This is the text to be translated.</p>
         </div>
         <div>
             <h2>Translated Transcript</h2>
             <p id="translated"></p>
-            <button onclick="speak()">
+            <button id="speakBtn">
                 <i class="fas fa-volume-up"></i> Speak
             </button>
             <div id="audio-progress" class="progress" style="display: none;">
