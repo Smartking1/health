@@ -4,34 +4,35 @@ import time
 
 def text_to_speech(text, language):
     try:
+        # Log the request details
         print(f"Text-to-speech request: Language: {language}, Text: {text}")
         
-        # Map language codes to gtts language codes if needed
+        # Map language codes to gTTS language codes if needed
         language_map = {
-            'es': 'es',
-            'fr': 'fr',
-            'de': 'de'
+            'es': 'es',  # Spanish
+            'fr': 'fr',  # French
+            'de': 'de',  # German
             # Add more mappings as needed
         }
         
-        # Get the appropriate language code for gtts
+        # Get the appropriate language code for gTTS
         tts_lang = language_map.get(language, language)
         
         # Create a gTTS object
         tts = gTTS(text=text, lang=tts_lang, slow=False)
         
-        # Create the directories if they don't exist
-        static_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'static')
-        audio_dir = os.path.join(static_dir, 'audio')
-        os.makedirs(audio_dir, exist_ok=True)
+        # Directly declare the path to store the audio file
+        audio_dir = os.path.join("app", "static", "audio")  # Path to the audio directory
+        os.makedirs(audio_dir, exist_ok=True)  # Create the directory if it doesn't exist
         
         # Use a timestamp to create a unique filename
         timestamp = int(time.time())
         filename = f'speech_{timestamp}.mp3'
         
-        # Define the path for saving the audio file
+        # Define the full path for saving the audio file
         audio_file_path = os.path.join(audio_dir, filename)
         
+        # Log the file path
         print(f"Saving audio file to: {audio_file_path}")
         
         # Save the audio file
@@ -47,5 +48,6 @@ def text_to_speech(text, language):
             return None
             
     except Exception as e:
+        # Log any errors and re-raise the exception
         print(f"Error in text_to_speech: {str(e)}")
         raise
